@@ -1,0 +1,13 @@
+{
+  "linter": {
+    "enabled": true,
+    "rules": {
+      "recommended": true
+    },
+    "ignore": ["node_modules", ".yarn", ".next", ".pnp.cjs", ".pnp.loader.mjs"]
+  },
+  "formatter": {
+    "enabled": true,
+    "ignore": ["node_modules", ".yarn", ".next", ".pnp.cjs", ".pnp.loader.mjs"]
+  }
+}
