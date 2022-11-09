@@ -11,10 +11,9 @@ export const Url = ({ page }: PageItemProps) => {
   const [isEditing, setIsEditing] = useState(false);
   const [url, setUrl] = useState(page.url);
 
-  const { mutate: mutateUpdate, isLoading: isLoadingUpdate } =
-    trpc.page.update.useMutation({
-      onSuccess: () => trpcContext.page.invalidate(),
-    });
+  const { mutate, isLoading } = trpc.page.update.useMutation({
+    onSuccess: () => trpcContext.page.invalidate(),
+  });
 
   const handleToggleEdit = () => {
     setIsEditing((prev) => !prev);
@@ -22,21 +21,21 @@ export const Url = ({ page }: PageItemProps) => {
 
   const handleUpdate = () => {
     if (url.length > 0) {
-      mutateUpdate({ id: page.id, url });
+      mutate({ id: page.id, url });
       setIsEditing(false);
     }
   };
 
   if (isEditing) {
     return (
-      <div className="flex flex-row justify-between gap-8">
+      <div className="flex flex-row justify-between gap-8 h-8">
         <input
           className="flex-1 border rounded px-2 py-1"
           type="text"
           value={url}
           onChange={(e) => setUrl(e.currentTarget.value)}
           name="url"
-          disabled={isLoadingUpdate}
+          disabled={isLoading}
         />
         <button
           type="submit"
@@ -56,8 +55,12 @@ export const Url = ({ page }: PageItemProps) => {
   }
 
   return (
-    <div className="flex flex-row justify-between gap-8">
-      <span className="flex-1 rounded px-2 py-1">{page.url}</span>
+    <div className="flex flex-row justify-between gap-8 items-center h-8">
+      {isLoading ? (
+        <div className="h-4 animate-pulse flex-1 px-2 py-1 w-[400px] flex bg-slate-200 rounded" />
+      ) : (
+        <span className="flex-1 rounded px-2 py-1 w-[400px]">{page.url}</span>
+      )}
       <button
         type="button"
         onClick={handleToggleEdit}
