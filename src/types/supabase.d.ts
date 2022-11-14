@@ -15,18 +15,21 @@ export interface Database {
           url: string
           created_at: string
           read_at: string | null
+          image_id: string
         }
         Insert: {
           id?: number
           url?: string
           created_at?: string
           read_at?: string | null
+          image_id?: string
         }
         Update: {
           id?: number
           url?: string
           created_at?: string
           read_at?: string | null
+          image_id?: string
         }
       }
     }

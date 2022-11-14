@@ -20,6 +20,7 @@ const Home: NextPage = () => {
             <th className="px-4 py-2">URL</th>
             <th className="px-4 py-2">Created At</th>
             <th className="px-4 py-2">Read At</th>
+            <th className="px-4 py-2">Image Id</th>
           </tr>
         </thead>
         <tbody>

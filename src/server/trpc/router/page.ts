@@ -21,6 +21,7 @@ export const pageRouter = router({
     .input(
       z.object({
         url: z.string(),
+        image_id: z.string(),
       })
     )
     .mutation(async ({ input }) => {
